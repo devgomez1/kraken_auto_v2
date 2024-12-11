@@ -1,7 +1,5 @@
 # Suggested Development Order
 
-Below is a suggested step-by-step order for building out your trading bot project based on the proposed structure. This progression helps ensure you develop a solid foundation before moving on to more complex tasks like live trading.
-
 1. **Project Initialization and Environment Setup**  
    - Create the project directory structure as outlined.  
    - Set up a Python virtual environment.  
