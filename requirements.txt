@@ -1,6 +1,0 @@
-# requirements.txt
-ccxt>=4.0.0        # For exchange integration
-pandas>=2.0.0      # For data handling
-pyyaml>=6.0.0      # For configuration
-python-dotenv>=1.0.0  # For environment variables
-pytest>=7.0.0      # For testing

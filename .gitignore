@@ -1,0 +1,27 @@
+# Python virtual environment
+venv/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Environment variables and credentials
+.env
+config/credentials.yml
+
+# Logs
+data/logs/
+*.log
+
+# IDE specific files
+.vscode/
+.idea/
+
+# Data files
+data/historical_data/
+data/paper_trading_results/
+
+# Distribution/packaging
+dist/
+build/
+*.egg-info/
