@@ -41,12 +41,22 @@ class KrakenClient:
     
     def _setup_paper_trading(self):
         """Setup paper trading directory and state"""
-        # Create paper trading results directory if it doesn't exist
-        paper_trading_dir = Path('data/paper_trading_results')
-        paper_trading_dir.mkdir(parents=True, exist_ok=True)
+        # Create all required directories
+        data_dirs = [
+            Path('data'),
+            Path('data/paper_trading_results'),
+            Path('data/historical_data'),
+            Path('data/logs')
+        ]
         
-        self.state_file = paper_trading_dir / 'trading_state.json'
-        self._load_paper_trading_state()
+        for directory in data_dirs:
+            directory.mkdir(parents=True, exist_ok=True)
+        
+        self.state_file = Path('data/paper_trading_results/trading_state.json')
+        
+        # Initialize empty state file if it doesn't exist
+        if not self.state_file.exists():
+            self._save_paper_trading_state()
     
     def _load_paper_trading_state(self):
         """Load paper trading state from file if it exists"""
@@ -74,10 +84,6 @@ class KrakenClient:
 
     async def fetch_market_data(self, symbol: str, timeframe: str = '1m', 
                               limit: int = 100) -> List[Dict]:
-        """
-        Fetch OHLCV market data for a given symbol.
-        Works the same for both live and paper trading.
-        """
         try:
             ohlcv = await self.exchange.fetch_ohlcv(symbol, timeframe, limit=limit)
             return [
