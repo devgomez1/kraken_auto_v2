@@ -1,0 +1,66 @@
+# config/config.yml
+exchange:
+  name: kraken
+  trading_pairs:
+    - BTC/USD
+    - ETH/USD
+  timeframe: 1h  # Data timeframe
+
+paper_trading:
+  initial_balance: 10000  # USD
+  simulate_slippage: true
+  slippage_percentage: 0.1
+
+strategy:
+  name: simple_moving_average
+  parameters:
+    short_window: 20
+    long_window: 50
+    rsi_period: 14
+
+risk_management:
+  max_position_size: 0.1  # 10% of account
+  max_open_positions: 3
+  stop_loss_percentage: 2.0
+  take_profit_percentage: 4.0
+
+# config/credentials_example.yml
+kraken:
+  api_key: YOUR_API_KEY_HERE
+  api_secret: YOUR_API_SECRET_HERE
+
+# config/logging.ini
+[loggers]
+keys=root,trading_bot
+
+[handlers]
+keys=consoleHandler,fileHandler
+
+[formatters]
+keys=standardFormatter
+
+[logger_root]
+level=INFO
+handlers=consoleHandler
+
+[logger_trading_bot]
+level=INFO
+handlers=consoleHandler,fileHandler
+qualname=trading_bot
+propagate=0
+
+[handler_consoleHandler]
+class=StreamHandler
+level=INFO
+formatter=standardFormatter
+args=(sys.stdout,)
+
+[handler_fileHandler]
+class=FileHandler
+level=INFO
+formatter=standardFormatter
+args=('data/logs/trading_bot.log', 'a')
+
+[formatter_standardFormatter]
+format=%(asctime)s - %(name)s - %(levelname)s - %(message)s
+datefmt=%Y-%m-%d %H:%M:%S
