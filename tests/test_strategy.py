@@ -16,7 +16,11 @@ def strategy_config():
             'long_window': 10
         },
         'risk_management': {
-            'max_position_size': 0.1
+            'max_position_size': 0.1,
+            'fixed_stop_loss_pct': 2.0,
+            'max_loss_pct': 2.0,
+            'trailing_stop_loss_pct': None,  # Optional
+            'trailing_activation_pct': None   # Optional
         }
     }
 
